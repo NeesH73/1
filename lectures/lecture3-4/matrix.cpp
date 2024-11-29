@@ -2,7 +2,7 @@
 
 const int mSize = 3;
 
-int matrix_sum(int m[mSize][mSize]) // int**
+int matrix_sum(int** m) // int**
 {
     int sum = 0;
     for (int i = 0; i < mSize; i++) {
@@ -14,7 +14,7 @@ int matrix_sum(int m[mSize][mSize]) // int**
 }
 
 
-void matrix_transpose(int m[mSize][mSize]) // int**
+void matrix_transpose(int** m) // int**
 {
     for (int i = 0; i < mSize; i++) {
         for (int j = i + 1; j < mSize; j++) {
@@ -23,7 +23,7 @@ void matrix_transpose(int m[mSize][mSize]) // int**
     }
 }
 
-void matrix_print(int m[mSize][mSize]) // int**
+void matrix_print(int** m) // int**
 {
     for (int i = 0; i < mSize; i++) {
         for (int j = 0; j < mSize; j++) {
@@ -33,20 +33,26 @@ void matrix_print(int m[mSize][mSize]) // int**
     }
 }
 
+
 int main(int argc, char** argv)
 {
-    int m[mSize][mSize];
+    
+    int** matrix=new int*[mSize];
+    for (int i=0;i<mSize;i++){
+        matrix[i]=new int[mSize];
+    }
+    
     for (int i = 0; i < mSize; i++) {
         for (int j = 0; j < mSize; j++) {
-            std::cin >> m[i][j];
+            std::cin >> matrix[i][j];
         }
     }
-    int matrixSum = matrix_sum(m);
+    int matrixSum = matrix_sum(matrix);
 
 	std::cout << "square matrix sum = " << (matrixSum*matrixSum) << std::endl;
 
-    matrix_transpose(m);
-    matrix_print(m);
+    matrix_transpose(matrix);
+    matrix_print(matrix);
 
 	return 0;
 }
